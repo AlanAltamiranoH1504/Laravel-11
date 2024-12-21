@@ -30,3 +30,26 @@ Route::get("/paramOp/{nombre?}/{apellidos?}", function ($nombre = "No hay", $ape
        "apellidos" => $apellidos
    ]);
 });
+
+//Ruta contact1
+Route::get("/contact1/{nombre?}/{ciudad?}", function ($nombre = "No hay nombre", $ciudad = "No hay ciudad"){
+    return redirect()->route("contact2");
+})->name("contact1");
+
+//Ruta contact2
+Route::get("/contact2/{nombre?}/{ciudad?}", function ($nombre = null, $ciudad = null){
+    $paises  = ['Mexico', 'EUA', 'Canada', 'Alemania'];
+   return view('contact2', compact('nombre', 'ciudad', 'paises'));
+})->name('contact2');
+
+//Ruta para prueba de los leyouts
+Route::get("/pruebaLayOut", function (){
+    return view("pruebaLayOut");
+});
+Route::get("/layOut2", function (){
+    return view("pruebaLayOut2");
+});
+
+//Ruta para un controlador
+Route::get("/primerControlador/{nombre?}/{apellidos?}", [\App\Http\Controllers\PrimerControllador::class, 'index']);
+Route::resource("productos", \App\Http\Controllers\ResourceController::class);
