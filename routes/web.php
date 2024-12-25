@@ -52,4 +52,6 @@ Route::get("/layOut2", function (){
 
 //Ruta para un controlador
 Route::get("/primerControlador/{nombre?}/{apellidos?}", [\App\Http\Controllers\PrimerControllador::class, 'index']);
-Route::resource("productos", \App\Http\Controllers\ResourceController::class);
+
+//Ruta para el controlador Resource PostController
+Route::resource("/post", \App\Http\Controllers\Dashboard\PostController::class);
